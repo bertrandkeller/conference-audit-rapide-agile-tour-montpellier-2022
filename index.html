@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Empreinte numérique | Bertrand Keller</title>
+  <link rel="preload" href="images/perftest.svg">
+  <link rel="preload" href="images/perftest2.svg">
+  <link rel="preload" href="images/perftest3.svg">
+  <link rel="preload" href="images/perftest4.svg">
+  <link href="big.css" rel="stylesheet" type="text/css" />
+  <link href="themes/white.css" rel="stylesheet" type="text/css" />
+  <script src="big.js"></script>
+  <style>
+    @font-face {
+      font-family: Subjectivity;
+      font-weight: 400;
+      font-style: normal;
+
+      src: url('fonts/Subjectivity/Subjectivity-Regular.woff2') format('woff2'), ;
+    }
+
+    @font-face {
+      font-family: Subjectivity;
+      font-weight: 200;
+      font-style: normal;
+
+      src: url('fonts/Subjectivity/Subjectivity-Light.woff2') format('woff2'), ;
+    }
+
+    @font-face {
+      font-family: Subjectivity;
+      font-weight: 500;
+      font-style: normal;
+
+      src: url('fonts/Subjectivity/Subjectivity-Bold.woff2') format('woff2'), ;
+    }
+
+    body {
+      font-family: Subjectivity;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-size: 100% auto;
+    }
+
+    body:not([class*="mode"]) {
+      opacity: 0;
+      visibility: hidden;
+    }
+    body[class*="mode"] {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    strong,
+    p span {
+      color: #12d700;
+    }
+
+    blockquote {
+      font-size: 6em;
+      font-weight: 200;
+    }
+
+    blockquote strong {
+      display: block;
+    }
+
+    blockquote:before {
+      position: absolute;
+      content: '\201C';
+      margin: -16px 0 0 -80px;
+      font: 200px/1 'PT Sans', sans-serif;
+      color: #ccc;
+    }
+
+    li {
+      margin-bottom: 8vh;
+    }
+
+    .small {
+      line-height: 1.25;
+      font-size: 40%;
+      font-weight: 200;
+    }
+
+    .transparent {
+      color: #212121;
+      text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+    }
+
+    .bottom {
+      position: absolute;
+      bottom: 20vh;
+      font-size: 5rem;
+      transform: translatex(-50%);
+    }
+
+    .grid-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flex {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      width: 60vw;
+    }
+
+    .flex>* {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .flex p {
+      position: absolute;
+      bottom: -9vh;
+      font-size: 3vh;
+    }
+
+    .flex svg {
+      min-width: 100em;
+    }
+
+    .svg-big,
+    .svg-small {
+      width: 30vw;
+      height: 40vh;
+      max-height: 100%;
+      will-change: min-width;
+    }
+
+    .svg-big svg {
+      min-width: 50%;
+      animation: svgbig 8s ease;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    .svg-small svg {
+      min-width: 30%;
+      animation: svgsmall 8s ease;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes svgbig {
+      20% {
+        min-width: 55%;
+        opacity: 1;
+      }
+      50% {
+        min-width: 45%;
+        opacity: 0.5;
+      }
+      100% {
+        min-width: 80%;
+        opacity: 1;
+      }
+    }
+
+    @keyframes svgsmall {
+      20% {
+        min-width: 25%;
+        opacity: 0.5;
+      }
+      50% {
+        min-width: 35%;
+        opacity: 1;
+      }
+      100% {
+        min-width: 10%;
+        opacity: 0.5;
+      }
+    }
+
+    .grid {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: 5rem repeat(9, 1fr);
+      grid-gap: 1rem;
+      width: 80%;
+      height: 80%;
+      font-size: 0.4em;
+    }
+
+    .grid>* {
+      display: flex;
+      align-content: center;
+      align-items: flex-end;
+    }
+
+    .grid>h2 {
+      grid-column: 2 / 11;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .grid b {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: 1rem;
+      text-align: center;
+      color: #fff;
+      background: #4631d4;
+    }
+
+    .grid-flex {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 90vw;
+      height: 90vh;
+    }
+
+    .grid-flex>*:first-child {
+      flex: 0 1 100%;
+      justify-content: center;
+      width: 100%;
+      height: 3rem;
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    .grid-flex>* b {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0.2em 0 0;
+      width: 100%;
+      height: 100%;
+      height: 8em;
+      font-size: 6em;
+      text-align: center;
+      color: #fff;
+      background: #4631d4;
+      box-shadow: inset -15Px -15px 20px rgba(0, 0, 0, 0.15);
+      text-shadow: -1px -1px 1px #555, 1px 1px 1px #000;
+      will-change: font-size, height;
+    }
+
+    .grid-flex span {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0.5em;
+      font-size: 80%;
+    }
+
+    .grid-flex>*:not(:nth-child(1)) {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1em;
+      height: 80%;
+    }
+
+    .grid-flex>*:nth-child(2) {
+      max-width: 60%;
+    }
+
+    .grid-flex>*:nth-child(3) {
+      flex: 2;
+    }
+
+    .grid-flex>*:nth-child(4) {
+      flex: 4;
+    }
+
+    .grid-flex>*:nth-child(5) {
+      flex: 10;
+    }
+
+    .grid-flex>*:nth-child(6) {
+      flex: 30;
+    }
+
+    .grid-flex>*:nth-child(7) {
+      flex: 70;
+    }
+
+    .grid-flex>*:nth-last-child(1) b {
+      height: 100%;
+      font-size: 30em;
+    }
+
+    .grid-flex>*:nth-last-child(2) b {
+      font-size: 12em;
+      animation: decrease100 2.2s ease;
+    }
+
+    .grid-flex>*:nth-last-child(3) b {
+      font-size: 6em;
+      animation: decrease40 2.2s ease;
+    }
+
+    .grid-flex>*:nth-last-child(4) b {
+      font-size: 4em;
+      animation: decrease20 2.2s ease;
+    }
+
+    .grid-flex>*:nth-last-child(5) b {
+      font-size: 2em;
+      animation: decrease10 2.2s ease;
+    }
+
+    .grid-flex>*:nth-last-child(6) b {
+      font-size: 1em;
+      animation: decrease5 2.2s ease;
+    }
+
+    .grid-flex>*:nth-last-child(7) b {
+      font-size: 0.5em;
+      animation: decrease2 2.2s ease;
+    }
+
+
+    @keyframes load {
+      0% {
+        width: 10%;
+        height: 10%;
+      }
+    }
+
+    @keyframes appear {
+      0% {
+        flex: 0;
+        width: 0;
+        font-size: 0;
+      }
+
+      10% {
+        flex: 0.2;
+        font-size: 0.05em;
+      }
+
+      20% {
+        flex: 1;
+      }
+    }
+
+    @keyframes big {
+      50% {
+        flex: 20;
+        font-size: 1.5em;
+      }
+    }
+
+    @keyframes small {
+      0% {
+        flex: 6;
+        font-size: 1em;
+      }
+    }
+
+    @keyframes decrease100 {
+      0% {
+        height: 100%;
+        font-size: 30em;
+      }
+    }
+
+    @keyframes decrease40 {
+      0% {
+        height: 39%;
+        font-size: 12em;
+      }
+    }
+
+    @keyframes decrease20 {
+      0% {
+        height: 19%;
+        font-size: 6em;
+      }
+    }
+
+    @keyframes decrease10 {
+      0% {
+        height: 12%;
+        font-size: 4em;
+      }
+    }
+
+    @keyframes decrease5 {
+      0% {
+        height: 7%;
+        font-size: 2em;
+      }
+    }
+
+    @keyframes decrease2 {
+      0% {
+        height: 2%;
+        font-size: 1em;
+      }
+    }
+
+    @keyframes increase60 {
+      0% {
+        height: 40%;
+        font-size: 12em;
+      }
+    }
+
+    @keyframes increase40 {
+      0% {
+        height: 20%;
+        font-size: 6em;
+      }
+    }
+
+    @keyframes decreaseincrease40 {
+      50% {
+        height: 20%;
+        font-size: 7em;
+      }
+    }
+
+    @keyframes decreaseincrease20 {
+      50% {
+        height: 10%;
+        font-size: 5em;
+      }
+    }
+
+    @keyframes translate {
+      0% {
+        background-position: center -100%;
+      }
+
+      100% {
+        background-position: center 0;
+      }
+    }
+
+    @keyframes translate2 {
+      0% {
+        background-position: center 0;
+      }
+
+      100% {
+        background-position: center 50%;
+      }
+    }
+
+    @keyframes translate3 {
+      0% {
+        background-position: center 50%;
+      }
+
+      100% {
+        background-position: center 100%;
+      }
+    }
+
+    .svg {
+      display: flex;
+      align-items: center;
+    }
+
+    .svg svg {
+      width: 20rem;
+      height: 20rem;
+    }
+
+    .bouncetext {
+      position: absolute;
+      top: 5vh;
+      font-size: 2rem;
+      transform: translatex(-50%);
+      text-align: center;
+    }
+
+    .bounceball {
+      position: relative;
+      display: inline-block;
+      width: 15px;
+      height: 37px;
+    }
+
+    .bounceball:before {
+      position: absolute;
+      content: '';
+      top: -150px;
+      left: -75px;
+      display: block;
+      width: 150px;
+      height: 150px;
+      transform-origin: 50%;
+      animation: bounce 750ms alternate infinite ease;
+      border-radius: 50%;
+      background-color: #12d700;
+      box-shadow: inset -15Px -15px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    @keyframes bounce {
+      0% {
+        top: 300px;
+        height: 50px;
+        transform: scaleX(2);
+        border-radius: 60px 60px 20px 20px;
+      }
+
+      35% {
+        height: 150px;
+        transform: scaleX(1);
+        border-radius: 50%;
+      }
+
+      100% {
+        top: -150px;
+      }
+    }
+
+    .loading:after {
+      content: ' .';
+      animation: dots 1.5s steps(5, end) infinite;
+    }
+
+    @keyframes dots {
+
+      0%,
+      20% {
+        color: rgba(0, 0, 0, 0.05);
+        text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0),
+          0.5em 0 0 rgba(0, 0, 0, 0);
+      }
+
+      40% {
+        color: black;
+        text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0),
+          0.5em 0 0 rgba(0, 0, 0, 0);
+      }
+
+      60% {
+        text-shadow: 0.25em 0 0 black,
+          0.5em 0 0 rgba(0, 0, 0, 0);
+      }
+
+      80%,
+      100% {
+        text-shadow: 0.25em 0 0 black,
+          0.5em 0 0 black;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 35rem;
+      background-image: linear-gradient(to bottom, rgba(118, 79, 39, 0.6) 0%, rgba(255, 123, 13, 0.6) 100%);
+      background-position: center center;
+      background-size: cover;
+
+      background-blend-mode: soft-light;
+    }
+
+    .bird {
+      width: 352px;
+      height: 500px;
+      animation-name: fly-cycle;
+      animation-duration: 1s;
+      animation-timing-function: steps(10);
+      animation-delay: -0.5s;
+      animation-iteration-count: infinite;
+      background-image: url(images/bird-cells.svg);
+      background-size: auto 100%;
+
+      will-change: background-position;
+    }
+
+    .bird-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      will-change: transform;
+    }
+
+    @keyframes fly-cycle {
+      100% {
+        background-position: -3600px 0;
+      }
+    }
+
+    .wrapper {
+      text-align: center;
+    }
+
+    .wrapper p {
+      display: inline-block;
+      font-weight: 700;
+      animation: textclip 5.5s linear;
+      animation-delay: 1s;
+      animation-fill-mode: backwards;
+      text-transform: uppercase;
+      color: #fff;
+      background-image: linear-gradient(to right, #333 38%, #fff 39%, #58d240 50%);
+      background-clip: border-box;
+      background-clip: text;
+      background-size: 800% auto;
+      background-position: 100% center;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
+    }
+
+    @keyframes textclip {
+      from {
+        background-position: 0% center;
+      }
+
+      10% {
+        background-position: 0% center;
+      }
+
+      to {
+        background-position: 100% center;
+      }
+    }
+
+    /* Pyramide de Maslow */
+    .pyramid-container {
+      text-align: center;
+      margin-left: 40vw;
+    }
+
+    [class^=pyramid-level] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 0;
+      border-left: 5vw solid transparent;
+      border-right: 5vw solid transparent;
+      margin-right: auto;
+      margin-left: auto;
+      border-bottom-width: 20vh;
+      border-bottom-style: solid;
+      border-bottom-color: #4631d4;
+      font-size: 15em;
+    }
+
+    [class^=pyramid-level]:last-child,[class^=pyramid-level]:last-child strong {
+      animation: pyramid-grow 2s ease-out;
+    }
+
+    @keyframes pyramid-grow {
+      from {
+        opacity: 0;
+        overflow: hidden;
+        height: 0;
+        width: 5vw;
+        border-left-width: 0vw;
+        border-right-width: 0vw;
+        border-bottom-width: 0;
+      }
+      20% {
+        opacity: 0.9;
+      }
+    }
+
+    .pyramid-level-1:before,
+    [class^=pyramid-level]:after {
+      position: absolute;
+      content: '';
+      width: 40vw;
+      border-bottom: 5px solid white;
+      z-index: 0;
+    }
+    .pyramid-level-1:before {
+      display: none;
+      bottom: 9.7vh;
+      width: 50vw;
+    }
+
+    .pyramid-level-4:after {
+      display: none;
+    }
+
+    [class^=pyramid-level] div {
+      padding-top: 22vh;
+      height: 28vh;
+      font-size: 2.5em;
+      color: #fff;
+      line-height: 1;
+    }
+
+    [class^=pyramid-level]:first-child div {
+      padding-top: 29vh;
+      height: 40vh;
+    }
+
+    [class^=pyramid-level] strong {
+      position: absolute;
+      left: 5vw;
+      font-size: 2rem;
+      color: #333;
+      width: 80%;
+      height: 11vh;
+      text-align: left;
+    }
+
+    [class^=pyramid-level] strong:after {
+      content: '';
+      width: 60%;
+      height: 1px;
+      background: #999;
+      position: absolute;
+      left: 0;
+      bottom: -0.8vh;
+      z-index: 8;
+    }
+
+    .pyramid-level-4 {width: 10vw;}
+    .pyramid-level-3 {width: 20vw;}
+    .pyramid-level-2 {width: 30vw;}
+    .pyramid-level-1 {width: 40vw;}
+
+    .pyramid-level-4 strong:after {width: 60%;}
+    .pyramid-level-3 strong:after {width: 55%;}
+    .pyramid-level-2 strong:after {width: 50%;}
+    .pyramid-level-1 strong:after {width: 45%;}
+
+  </style>
+</head>
+
+<body class="light">
+  <!-- <div data-body-style="background-image:url(images/photo-paysage.jpg);background-size: 100%;background-position: center center;">
+    <div class="bird-container">
+      <div class="bird"></div>
+    </div>
+  </div> -->
+  <div
+    data-body-style="background-image:url(images/smoke-icon-26.jpg);background-size: 10%;background-position: center center;">
+  </div>
+  <div>
+    <div class="svg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 55 60">
+        <g fill="#000" fill-rule="nonzero">
+          <path
+            d="M55 23.067a29.965 29.965 0 00-1.047-8.491 16.572 16.572 0 00-5.978-8.6C42.33 1.553 37.054-.28 30.886.033a67.106 67.106 0 00-9.673 1.383c-4.511.907-7.788 2.493-10.019 4.849A18.981 18.981 0 007.182 12.8a26.426 26.426 0 00-.908 3.272l-.08.346c-.21.779-.495 1.536-.849 2.261-.206.462-.413.924-.592 1.4a3.375 3.375 0 00-.269 1.681 3.819 3.819 0 001.459 2.227c.491.45.813.765.816 1.053-.04.15-.098.292-.175.426a38.643 38.643 0 01-4.378 7.121c-.718.877-1.47 1.9-1.317 2.939.219.788.74 1.459 1.449 1.866.33.228.68.429 1.043.6.431.22 1.154.588 1.2.853.065.337.027.685-.109 1-.149.312-.3.582-.435.817-.367.649-.982 1.737-.057 2.515.216.19.586.481.924.74-.25.44-.362.943-.322 1.447.054.391.267.743.589.973.224.159.463.3.7.432.588.335.817.492.9.8.054.407.017.822-.108 1.213a9.546 9.546 0 00-.149.787c-.101.91.013 1.83.335 2.687a3.7 3.7 0 004.357 2.644 81.58 81.58 0 008.436-2.523c2.248 1.328 3.669 5.345 4.039 6.852a1 1 0 00.971.762l25.1-.069a1 1 0 00.953-1.293 7.712 7.712 0 00-1.019-1.913 9.434 9.434 0 01-.64-1.061 19.646 19.646 0 01-1.13-2.86 33.288 33.288 0 01-1.178-5.914c-.354-2.99.097-6.02 1.308-8.778a22.451 22.451 0 012.715-4.286c.6-.813 1.227-1.653 1.789-2.54a15.375 15.375 0 002.45-8.21zm-5.844 9.567a24.305 24.305 0 00-2.942 4.678 18.89 18.89 0 00-1.46 9.818A35.065 35.065 0 0046 53.394a21.8 21.8 0 001.24 3.142c.227.447.485.879.771 1.291l.072.109L25.408 58a15.963 15.963 0 00-3.525-6.388c.255-.089.5-.172.721-.252.758-.265 1.331-.466 1.617-.556 4.287-1.346 6.431-3.294 6.373-5.791a1.039 1.039 0 00-1.024-.977 1 1 0 00-.976 1.024c.024 1.03-.819 2.532-4.974 3.836-.3.094-.891.3-1.678.577-.713.25-1.588.556-2.545.883A83.191 83.191 0 0110.8 52.95a1.774 1.774 0 01-2.064-1.342 3.881 3.881 0 01-.241-1.764c.027-.207.074-.414.12-.622a4.436 4.436 0 00.094-2.137 3.3 3.3 0 00-1.844-2.046l-.214-.123c.107-.218.235-.426.383-.619a1 1 0 00-.192-1.42c-.24-.178-.812-.606-1.222-.935.051-.093.108-.2.161-.289.154-.271.329-.584.5-.941a3.7 3.7 0 00.269-2.236c-.233-1.227-1.4-1.825-2.261-2.261-.29-.138-.569-.3-.832-.483a5.211 5.211 0 01-.588-.476c0-.15.16-.516.929-1.455a40.37 40.37 0 004.569-7.428c.24-.412.375-.878.392-1.355a3.482 3.482 0 00-1.465-2.5c-.4-.37-.786-.72-.829-1.028.004-.242.058-.48.16-.7.164-.434.355-.86.546-1.286.408-.841.733-1.72.971-2.624l.081-.349c.214-1.027.493-2.038.836-3.029a16.989 16.989 0 013.587-5.862c1.937-2.04 4.869-3.44 8.961-4.263a65.02 65.02 0 019.381-1.346c5.658-.3 10.515 1.414 15.751 5.522a14.423 14.423 0 015.287 7.57A27.931 27.931 0 0153 23.038a13.427 13.427 0 01-2.139 7.179c-.524.822-1.126 1.633-1.708 2.417h.003z" />
+          <path fill="green"
+            d="M21 17h1a1 1 0 000-2h-1a3 3 0 00-3 3v1a3 3 0 003 3h1a1 1 0 000-2h-1a1 1 0 01-1-1v-1a1 1 0 011-1zM28 14a1 1 0 00-1 1v2a1 1 0 01-1 1h-1a1 1 0 000 2h1a3 3 0 003-3v-2a1 1 0 00-1-1z" />
+          <path
+            d="M32 14v-1a3 3 0 00-3-3h-2a3 3 0 00-3 3v1a1 1 0 002 0v-1a1 1 0 011-1h2a1 1 0 011 1v1a1 1 0 002 0zM35 21h-1a1 1 0 01-1-1v-1a1 1 0 00-2 0v1a3 3 0 003 3h1a1 1 0 000-2zM40 18a1 1 0 00-1-1h-1a1 1 0 010-2h1a1 1 0 000-2h-1a3 3 0 000 6h1a1 1 0 001-1zM43 18a1 1 0 00-1 1v2a1 1 0 01-1 1h-1a1 1 0 000 2h1a3 3 0 003-3v-2a1 1 0 00-1-1z" />
+          <path
+            d="M50.96 21c0-.016-.008-.029-.009-.045a24.6 24.6 0 00-.848-5.284 12.483 12.483 0 00-4.593-6.54C40.987 5.583 36.886 4 32.209 4c-.368 0-.74.01-1.121.028-.341.018-.682.057-1.023.085-.023 0-.042-.013-.065-.013a.905.905 0 00-.155.031A70.279 70.279 0 0022 5.338a23.366 23.366 0 00-3.344.921c-.023.009-.046.014-.068.024A11.565 11.565 0 0014.1 9.016a14.85 14.85 0 00-2.882 4.511.99.99 0 00-.075.177c-.067.164-.144.319-.206.486-.307.833-.79 2.907-.851 3.168-.225 1.119-.783 4.954 1.486 7.36 1.44 1.526 3.642 2.09 6.534 1.68l1.346-.192c6.416-.923 9.636-1.386 12.407 1.324a63.816 63.816 0 001.647 1.57c-.629 1.978-1.445 6.2 1.9 8.7C39 40.5 39 41.231 39 43a1 1 0 001.447.9C40.709 43.764 43 42.488 43 38c0-2.455 1.83-4.577 3.637-6.333l.03-.027a9.671 9.671 0 002.5-2.5 11.561 11.561 0 001.533-3.729.99.99 0 00.09-.411c.126-.656.196-1.321.21-1.989A28.63 28.63 0 0050.96 21zM41 38a7.645 7.645 0 01-.352 2.454c-.467-1.169-1.549-2.38-4.048-4.255-1.987-1.488-1.847-3.962-1.418-5.7a10.727 10.727 0 006.6 2.361c.39-.003.779-.026 1.166-.068A8.7 8.7 0 0041 38zm6.48-9.926a6.5 6.5 0 01-2.849 2.368A8.783 8.783 0 0139 30.358V29a1 1 0 011-1h3a1 1 0 000-2h-3a3 3 0 00-3 3v.311a27.155 27.155 0 01-3.745-3.21A8.515 8.515 0 0029 23.76V23a1 1 0 00-2 0v.516c-2.628.005-5.25.243-7.835.711l-1.342.191a9.644 9.644 0 01-1.823.094V24a1 1 0 00-2 0v.048a3.353 3.353 0 01-.977-.7A4.493 4.493 0 0111.968 21H13a3 3 0 003-3 1 1 0 00-2 0 1 1 0 01-1 1h-1.121c.027-.41.08-.816.159-1.219.131-.568.5-2.1.733-2.781H16a1 1 0 000-2h-2.318a12.434 12.434 0 011.867-2.609A8.321 8.321 0 0118 8.693V10a3 3 0 003 3 1 1 0 000-2 1 1 0 01-1-1V7.91c.789-.246 1.59-.45 2.4-.61.852-.172 1.724-.337 2.6-.494V7a1 1 0 002 0v-.527c.666-.1 1.333-.192 2-.265V7a1 1 0 002 0v-.958c.063 0 .127-.012.189-.016A21.45 21.45 0 0133 6.025V10a1 1 0 001 1h2a1 1 0 000-2h-1V6.243c1.75.297 3.442.868 5.013 1.692 0 .023-.013.042-.013.065v3a1 1 0 002 0V9.09c.656.425 1.32.889 2 1.412V13a1 1 0 01-1 1 1 1 0 000 2 3 3 0 003-3v-.685a9.821 9.821 0 012.179 3.9A21.8 21.8 0 0148.863 20H47a1 1 0 000 2h1.979c.007.327.023.652.018.982-.005.348-.043.683-.081 1.018H47a1 1 0 000 2h1.464a9.78 9.78 0 01-.984 2.074z" />
+        </g>
+      </svg>
+    </div>
+    <notes>Problème de communication</notes>
+  </div>
+  <!-- Corps -->
+  <div>
+    <h2>Le<br><strong>facteur</strong> 4</h2>
+    <p class="small">La division par 4 des émissions de gaz à effet de serre à l'horizon 2050 en France (sur le niveau
+      de 1990)</p>
+  </div>
+  <!-- Argument 1 :: côté Site  -->
+  <div data-body-style="background-image:url(images/samknows-waterfall.svg);background-size: 90% auto;">
+    <notes>Une page web pour moi - des assets</notes>
+  </div>
+  <div
+    data-body-style="background-image:url(images/node-black-hole.png);background-size: auto 90%;background-position: center 100%;">
+    <notes>On s’équipe de la terre entière pour développer ça se comlexifie</notes>
+  </div>
+  <div data-body-style="background-image:url(images/gitlab-pipeline-4.png);background-size: 90% auto;">
+    <notes>Ensuite on orchestre</notes>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte base de code</h2>
+      <div><b>Code<span>100MB</span></b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte base de code</h2>
+      <div><b>Code<span>100MB</span></b></div>
+      <div style="animation: appear 2s ease-out;"><b>Outillage<span>1GB</span></b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte base de code</h2>
+      <div><b>Code<span>100MB</span></b></div>
+      <div><b>Outillage<span>1GB</span></b></div>
+      <div style="animation: appear 2s ease-out;"><b>Génération<span>?GB</span></b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte base de code</h2>
+      <div><b style="animation: decreaseincrease20 10s ease infinite;height: 18%;">Code<span>100MB</span></b></div>
+      <div><b style="animation: decreaseincrease40 10s ease infinite;height: 38%;">Outillage<span>1GB</span></b></div>
+      <div style="animation: big 10s ease infinite;"><b>Génération<span>?GB</span></b></div>
+    </span>
+  </div>
+  <div>
+    <div class="bounceball"></div>
+    <div class="bouncetext loading">Que faire</div>
+  </div>
+  <div>
+    <div class="wrapper">
+      <p>Hébergement</p>
+    </div>
+  </div>
+  <!-- Argument 2 :: côté Client  -->
+  <!-- <div
+    data-body-style="background-image:url(images/vietnam-change.gif);background-size: 40% auto;background-color:#fde503;">
+    <notes>Bonne intention</notes>
+  </div>
+  <div data-body-style="background-image:url(images/vietnam-consumption.svg);background-size: 90% auto">
+    <notes>La réalité</notes>
+  </div> -->
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte Fabrication/Utilisation</h2>
+      <div><b>Data Center</b></div>
+      <notes>Consomation reporté sur les utilisateurs</notes>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte Fabrication/Utilisation</h2>
+      <div><b>Data Center</b></div>
+      <div style="animation: appear 1.5s ease-out;"><b>Réseau</b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte Fabrication/Utilisation</h2>
+      <div><b>Data Center<span>17%</span></b></div>
+      <div><b>Réseau<span>23%</span></b></div>
+      <div style="animation: appear 1.5s ease-out;"><b>Usagers<span>60%</span></b></div>
+    </span>
+    <notes>Achat de nouveaux matériels</notes>
+  </div>
+  <div>
+    <div class="flex">
+      <div class="svg-small"><svg width="48" viewBox="0 0 512 512"
+          fill="{% if site.data.[website].greenweb[datelastcrawl].green == false %}#22961e{% else %}#b00202{% endif %}">
+          <path fill=#02697a
+            d="M298.667 443.733h-85.333a8.536 8.536 0 00-8.533 8.533 8.536 8.536 0 008.533 8.533h85.333a8.536 8.536 0 008.533-8.533 8.536 8.536 0 00-8.533-8.533zM98.133 17.067H42.667C19.14 17.067 0 36.207 0 59.733V435.2c0 23.526 19.14 42.667 42.667 42.667h51.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533h-51.2c-14.114 0-25.6-11.486-25.6-25.6V59.733c0-14.114 11.486-25.6 25.6-25.6h55.467a8.536 8.536 0 008.533-8.533c0-4.71-3.823-8.533-8.534-8.533zM298.667 409.6h-85.333c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533h85.333c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533zM349.867 238.933H162.133c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533h187.733c4.71 0 8.533-3.823 8.533-8.533s-3.822-8.533-8.532-8.533zM264.789 213.333a8.53 8.53 0 00-8.533-8.533h-.085c-4.71 0-8.491 3.823-8.491 8.533 0 4.71 3.866 8.533 8.576 8.533a8.53 8.53 0 008.533-8.533zM273.067 358.4c0-9.412-7.654-17.067-17.067-17.067-9.412 0-17.067 7.654-17.067 17.067s7.654 17.067 17.067 17.067c9.412 0 17.067-7.655 17.067-17.067z" />
+          <path fill=#02697a
+            d="M94.123 68.267h-.085c-4.71 0-8.491 3.823-8.491 8.533s3.866 8.533 8.576 8.533c4.719 0 8.533-3.823 8.533-8.533s-3.814-8.533-8.533-8.533zM93.867 409.6H76.8c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533h17.067c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533zM94.123 136.533h-.085c-4.71 0-8.491 3.823-8.491 8.533 0 4.71 3.866 8.533 8.576 8.533a8.53 8.53 0 008.533-8.533 8.53 8.53 0 00-8.533-8.533zM93.867 375.467H76.8c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533h17.067c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533zM93.867 238.933h-51.2c-4.71 0-8.533 3.823-8.533 8.533S37.956 256 42.667 256h51.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.534-8.533-8.534zM42.667 187.733h51.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533h-51.2c-4.71 0-8.533 3.823-8.533 8.533s3.822 8.533 8.533 8.533zM94.123 204.8h-.085c-4.71 0-8.491 3.823-8.491 8.533 0 4.71 3.866 8.533 8.576 8.533a8.53 8.53 0 008.533-8.533 8.53 8.53 0 00-8.533-8.533zM42.667 119.467h51.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533h-51.2c-4.71 0-8.533 3.823-8.533 8.533s3.822 8.533 8.533 8.533zM349.867 0H162.133c-23.526 0-42.667 19.14-42.667 42.667v426.667c0 23.526 19.14 42.667 42.667 42.667h187.733c23.526 0 42.667-19.14 42.667-42.667V42.667C392.533 19.14 373.393 0 349.867 0zm25.6 469.333c0 14.114-11.486 25.6-25.6 25.6H162.133c-14.114 0-25.6-11.486-25.6-25.6V42.667c0-14.114 11.486-25.6 25.6-25.6h187.733c14.114 0 25.6 11.486 25.6 25.6v426.666zM418.133 187.733h51.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533h-51.2c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533zM418.304 136.533c-4.71 0-8.491 3.823-8.491 8.533 0 4.71 3.866 8.533 8.576 8.533a8.53 8.53 0 008.533-8.533 8.53 8.53 0 00-8.533-8.533h-.085zM418.304 204.8c-4.71 0-8.491 3.823-8.491 8.533 0 4.71 3.866 8.533 8.576 8.533a8.53 8.53 0 008.533-8.533 8.53 8.53 0 00-8.533-8.533h-.085zM418.389 85.333c4.719 0 8.533-3.823 8.533-8.533s-3.814-8.533-8.533-8.533h-.085c-4.71 0-8.491 3.823-8.491 8.533s3.866 8.533 8.576 8.533zM418.133 256h51.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533h-51.2c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533zM418.133 426.667H435.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533h-17.067c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533zM418.133 392.533H435.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533h-17.067c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533z" />
+          <path fill=#02697a
+            d="M469.333 17.067h-55.467a8.536 8.536 0 00-8.533 8.533 8.536 8.536 0 008.533 8.533h55.467c14.114 0 25.6 11.486 25.6 25.6V435.2c0 14.114-11.486 25.6-25.6 25.6h-51.2c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533h51.2c23.526 0 42.667-19.14 42.667-42.667V59.733c0-23.526-19.14-42.666-42.667-42.666zM264.789 76.8a8.53 8.53 0 00-8.533-8.533h-.085c-4.71 0-8.491 3.823-8.491 8.533s3.866 8.533 8.576 8.533a8.53 8.53 0 008.533-8.533zM349.867 102.4H162.133c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533h187.733c4.71 0 8.533-3.823 8.533-8.533s-3.822-8.533-8.532-8.533zM264.789 145.067a8.53 8.53 0 00-8.533-8.533h-.085c-4.71 0-8.491 3.823-8.491 8.533 0 4.71 3.866 8.533 8.576 8.533a8.53 8.53 0 008.533-8.533z" />
+          <path fill=#02697a
+            d="M418.133 119.467h51.2c4.71 0 8.533-3.823 8.533-8.533s-3.823-8.533-8.533-8.533h-51.2c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533zM349.867 34.133H162.133a8.536 8.536 0 00-8.533 8.533 8.536 8.536 0 008.533 8.533h187.733a8.536 8.536 0 008.533-8.533c.001-4.71-3.822-8.533-8.532-8.533zM349.867 170.667H162.133c-4.71 0-8.533 3.823-8.533 8.533s3.823 8.533 8.533 8.533h187.733c4.71 0 8.533-3.823 8.533-8.533s-3.822-8.533-8.532-8.533z" />
+        </svg></div>
+      <div class="svg-big"><svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0"
+          viewBox="0 0 66 52" xml:space="preserve">
+          <style>
+            .st0,
+            .st1 {
+              fill: none;
+              stroke: #02697a;
+              stroke-width: 1.5;
+              stroke-miterlimit: 10
+            }
+
+            .st1 {
+              stroke: #7fa03e;
+              stroke-linecap: round;
+              stroke-linejoin: round
+            }
+
+          </style>
+          <switch>
+            <g>
+              <path class="st0" d="M50.8 36.2H21.7M8 21.8V9.4c0-2.1 1.7-3.7 3.7-3.7h40.9c2.1 0 3.7 1.7 3.7 3.7v19.5" />
+              <path class="st0"
+                d="M21.9 23.8v19.6c0 1.1-.9 2-2 2H6.4c-1.1 0-2-.9-2-2V23.8c0-1.1.9-2 2-2h13.5c1.1.1 2 .9 2 2zM59.9 30.2v14c0 .7-.5 1.2-1.2 1.2h-6.6c-.7 0-1.2-.5-1.2-1.2v-14c0-.7.5-1.2 1.2-1.2h6.6c.7 0 1.2.6 1.2 1.2zM4.4 43.2h17.7M51 43.2h8.9M22.1 30.2h28.8M39.7 44.6h-4.2v-8.4H29v8.4h-4.2c-.2 0-.4.2-.4.4v.2c0 .2.2.4.4.4h14.9c.2 0 .4-.2.4-.4V45c0-.2-.2-.4-.4-.4z" />
+              <path class="st1"
+                d="M14.8 27.7l-4 6.7M15.2 31l-4 6.7M35.8 9.9l-7 11.8M35.2 15l-7 11.8M56.3 32.6l-2.4 4M56.7 35.7l-2.3 4" />
+            </g>
+          </switch>
+        </svg></div>
+    </div>
+  </div>
+  <!--   <div>
+    <span class="grid-flex">
+      <h2>Optimisation du parc existant</h2>
+      <div><b style="font-size: 10em;height: 35%;animation: increase40 3s ease-out;">Data Center</b></div>
+      <div><b style="font-size: 18em;height: 60%;animation: increase60 3s ease-out;">Réseau</b></div>
+      <div style="flex:2.8;font-size: 0.8em;animation: small 3s ease-out;"><b>Usagers</b></div>
+    </span>
+    <notes>Achat de nouveaux matériels</notes>
+  </div> -->
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte numérique du web</h2>
+      <div><b>Front</b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte numérique du web</h2>
+      <div><b>Front</b></div>
+      <div style="animation: appear 1.5s ease-out;"><b>Back</b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte numérique du web</h2>
+      <div><b>Front</b></div>
+      <div><b>Back</b></div>
+      <div style="animation: appear 1.5s ease-out;"><b>Outillage</b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte numérique du web</h2>
+      <div><b>Front</b></div>
+      <div><b>Back</b></div>
+      <div><b>Outillage</b></div>
+      <div style="animation: appear 1.5s ease-out;"><b>Génération</b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte numérique du web</h2>
+      <div><b>Front</b></div>
+      <div><b>Back</b></div>
+      <div><b>Outillage</b></div>
+      <div><b>Génération</b></div>
+      <div style="animation: appear 1.5s ease-out;"><b>Réseau</b></div>
+    </span>
+  </div>
+  <div>
+    <span class="grid-flex">
+      <h2>Empreinte numérique du web</h2>
+      <div><b>Front</b></div>
+      <div><b>Back</b></div>
+      <div><b>Outillage</b></div>
+      <div><b>Génération</b></div>
+      <div><b>Réseau</b></div>
+      <div style="animation: appear 1.5s ease-out;"><b>Usagers</b></div>
+    </span>
+  </div>
+  <div>
+    <p><strong>70%</strong> des interfaces sont utilisées à moins de <strong>10%</strong></p>
+  </div>
+  <div data-body-style="background-image:url(images/atlas-greek-mythology.png);background-size: auto 60%;">
+  </div>
+  <div>
+    <div class="pyramid-container">
+      <div class="pyramid-level-4"><div>4<strong> Limiter la consommation</strong></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="pyramid-container">
+      <div class="pyramid-level-4"><div>4<strong> Limiter la consommation</strong></div></div>
+      <div class="pyramid-level-3"><div>3<strong> Supprimer l’inutile</strong></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="pyramid-container">
+      <div class="pyramid-level-4"><div>4<strong> Limiter la consommation</strong></div></div>
+      <div class="pyramid-level-3"><div>3<strong> Supprimer l’inutile</strong></div></div>
+      <div class="pyramid-level-2"><div>2<strong> Construire sobrement</strong></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="pyramid-container">
+      <div class="pyramid-level-4"><div>4<strong> Limiter la consommation</strong></div></div>
+      <div class="pyramid-level-3"><div>3<strong> Supprimer l’inutile</strong></div></div>
+      <div class="pyramid-level-2"><div>2<strong> Construire sobrement</strong></div></div>
+      <div class="pyramid-level-1"><div>1<strong> Concevoir de façon responsable</strong></div></div>
+    </div>
+  </div>
+  <div
+    data-body-style="background-image:url(images/lowtus.svg);background-size: 30%;background-position: center center;">
+  </div>
+  <div
+    data-body-style="background-image:url(images/gitlab-ci-scenso.png);background-size: 96% auto;background-position: center center;">
+  </div>
+  <div>
+    <img src="images/perftest.svg">
+  </div>
+  <div
+    data-body-style="background-image:url(images/arborescence.png);background-size: auto 50%;background-color: #2a2a2b;">
+  </div>
+  <div data-body-style="background-image:url(images/score-devopsrex.png);background-size: auto 96%;">
+  </div>
+  <div
+    data-body-style="background-image:url(images/classement.png);background-size: 78% auto;background-position: center 0;animation: translate 5s ease;background-color:#faf5f4;">
+  </div>
+  <div
+    data-body-style="background-image:url(images/classement.png);background-size: 78% auto;background-position: center 50%;animation: translate2 5s ease;background-color:#faf5f4;">
+  </div>
+  <div
+    data-body-style="background-image:url(images/classement.png);background-size: 78% auto;background-position: center 100%;animation: translate3 5s ease;background-color:#faf5f4;">
+  </div>
+  <div
+    data-body-style="background-image:url(images/planet-earth.svg);background-size: 30%;background-position: center center;">
+  </div>
+  <div>
+    <blockquote>
+      <p>Dans la société industrielle ce n’est plus l’homme qui travaille, façonne, par l'outil, c'est l’<span>outil qui
+          travaille l’homme</span> : "Le monopole du mode industriel de production fait des hommes la matière première
+        que travaille l’outil".<strong>Ivan Illich - La convivialité</strong></p>
+      <notes>Désinovation</notes>
+    </blockquote>
+  </div>
+</body>
+
+</html>
