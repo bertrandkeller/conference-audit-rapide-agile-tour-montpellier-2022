@@ -4,39 +4,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <title>Empreinte numérique | Bertrand Keller</title>
-  <link rel="preload" href="images/perftest.svg">
+  <title>Frago - Outil de suivi de conformité | Bertrand Keller</title>
+  <link rel="preload" href="images/ssg.png">
+  <link rel="preload" href="images/ssg-frago.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
   <link href="big.css" rel="stylesheet" type="text/css" />
   <link href="themes/white.css" rel="stylesheet" type="text/css" />
   <script src="big.js"></script>
   <style>
     @font-face {
-      font-family: Subjectivity;
-      font-weight: 400;
+      font-family: monserrat;
+      font-weight: 300;
       font-style: normal;
 
-      src: url('fonts/Subjectivity/Subjectivity-Regular.woff2') format('woff2'), ;
+      src: url('fonts/monserrat/Montserrat-Light.woff2') format('woff2');
     }
 
     @font-face {
-      font-family: Subjectivity;
-      font-weight: 200;
+      font-family: monserrat;
+      font-weight: 300;
       font-style: normal;
 
-      src: url('fonts/Subjectivity/Subjectivity-Light.woff2') format('woff2'), ;
+      src: url('fonts/monserrat/Montserrat-Regular.woff2') format('woff2');
     }
 
     @font-face {
-      font-family: Subjectivity;
+      font-family: monserrat;
       font-weight: 500;
       font-style: normal;
 
-      src: url('fonts/Subjectivity/Subjectivity-Bold.woff2') format('woff2'), ;
+      src: url('fonts/monserrat/Montserrat-SemiBold.woff2') format('woff2');
+    }
+
+    :root {
+      --border: rgb(234, 234, 234);
+      --bg-primary: white;
+      --text-primary: rgb(35 35 35);
+      --text-secondary: rgb(31, 155, 240);
     }
 
     body {
-      font-family: Subjectivity;
+      font-family: monserrat;
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -47,12 +55,20 @@
       opacity: 0;
       visibility: hidden;
     }
+
     body[class*="mode"] {
       opacity: 1;
       visibility: visible;
     }
 
-    h2.absolute {
+    h1,
+    div:not([data-absolute="absolute"]) h2:not(.absolute) {
+      //text-shadow: 2px 2px 2px #000;
+    }
+
+    body:not(.print-mode) [data-absolute="absolute"] h2,
+    body:not(.print-mode) h2.absolute,
+    body:not(.print-mode) [data-absolute="absolute"] p {
       position: absolute;
       top: 5vh;
       left: 50%;
@@ -62,15 +78,43 @@
       transform: translateX(-50%);
     }
 
+    .highlight {
+      display: block;
+      padding: 1em;
+      width: max-content !important;
+      background: rgba(0,0,0,0.5);
+    }
+
+    code {
+      color: #fff;
+      padding: 0 0.2em 0.1em;
+      background: rgba(0,0,0,0.9);
+      border-radius: 4px;
+    }
+
+    dt,
     strong,
     p span,
     [class^=pyramid-level] span {
       color: #12d700;
     }
 
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      margin: 0 0 1rem;
+    }
+
+
     blockquote {
       font-size: 6em;
       font-weight: 200;
+    }
+
+    blockquote p {
+      margin-bottom: 5px;
     }
 
     blockquote strong {
@@ -89,10 +133,21 @@
       margin-bottom: 8vh;
     }
 
+    body:not(.print-mode) [data-absolute="absolute"] p {
+      top: auto;
+      bottom: 10vh;
+      line-height: 1;
+      font-size: 4vh;
+    }
+
     .small {
       line-height: 1.25;
       font-size: 40%;
       font-weight: 200;
+    }
+
+    ol li {
+      margin-bottom: 1rem;
     }
 
     .transparent {
@@ -166,11 +221,13 @@
         min-width: 55%;
         opacity: 1;
       }
+
       50% {
         width: 45%;
         min-width: 45%;
         opacity: 0.5;
       }
+
       100% {
         width: 80%;
         min-width: 80%;
@@ -184,11 +241,13 @@
         min-width: 25%;
         opacity: 0.5;
       }
+
       50% {
         width: 35%;
         min-width: 35%;
         opacity: 1;
       }
+
       100% {
         width: 10%;
         min-width: 10%;
@@ -638,14 +697,14 @@
     .wrapper p {
       display: inline-block;
       font-weight: 700;
-      animation: textclip 5.5s linear;
-      animation-delay: 1s;
+      animation: textclip 6s linear;
+      animation-delay: 0s;
       animation-fill-mode: backwards;
       text-transform: uppercase;
       color: #fff;
-      background-image: linear-gradient(to right, #333 38%, #fff 39%, #58d240 50%);
+      background-image: linear-gradient(to right, #fff 38%, #333 39%, #58d240 39.5%, #58d240 50%);
       background-clip: text;
-      background-size: 800% auto;
+      background-size: 600% auto;
       background-position: 100% center;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -695,7 +754,8 @@
       font-weight: 100;
     }
 
-    [class^=pyramid-level]:last-child,[class^=pyramid-level]:last-child strong {
+    [class^=pyramid-level]:last-child,
+    [class^=pyramid-level]:last-child strong {
       animation: pyramid-grow 2s ease-out;
     }
 
@@ -709,6 +769,7 @@
         border-right-width: 0vw;
         border-bottom-width: 0;
       }
+
       20% {
         opacity: 0.9;
       }
@@ -722,6 +783,7 @@
       border-bottom: 5px solid white;
       z-index: 0;
     }
+
     .pyramid-level-1:before {
       display: none;
       bottom: 9.7vh;
@@ -767,15 +829,168 @@
       z-index: 8;
     }
 
-    .pyramid-level-4 {width: 10vw;}
-    .pyramid-level-3 {width: 20vw;}
-    .pyramid-level-2 {width: 30vw;}
-    .pyramid-level-1 {width: 40vw;}
+    .pyramid-level-4 {
+      width: 10vw;
+    }
 
-    .pyramid-level-4 strong:after {width: 60%;}
-    .pyramid-level-3 strong:after {width: 55%;}
-    .pyramid-level-2 strong:after {width: 50%;}
-    .pyramid-level-1 strong:after {width: 45%;}
+    .pyramid-level-3 {
+      width: 20vw;
+    }
+
+    .pyramid-level-2 {
+      width: 30vw;
+    }
+
+    .pyramid-level-1 {
+      width: 40vw;
+    }
+
+    .pyramid-level-4 strong:after {
+      width: 60%;
+    }
+
+    .pyramid-level-3 strong:after {
+      width: 55%;
+    }
+
+    .pyramid-level-2 strong:after {
+      width: 50%;
+    }
+
+    .pyramid-level-1 strong:after {
+      width: 45%;
+    }
+
+    .tweet {
+      font-family: Arial;
+      font-size: 18px !important;
+    }
+
+    .tweet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tweet-author-image {
+      width: 48px;
+      height: 48px;
+      border-radius: 9999px;
+    }
+
+    .tweet-author-info {
+      margin-left: 1rem;
+    }
+
+    .tweet-author-name {
+      line-height: 1rem;
+      font-weight: 500;
+    }
+
+    .tweet-author-handler {
+      line-height: 1.8rem;
+      color: var(--text-secondary);
+    }
+
+    .tweet-content {
+      margin-top: 1rem;
+      font-weight: 300;
+    }
+
+    .tweet-content a {
+      color: var(--text-secondary);
+    }
+
+    .tweet-content .emoji {
+      display: inline-block;
+      height: 1.2em;
+      width: 1.2em;
+      margin: 0 0.05em 0 0.1em;
+      vertical-align: -0.1em;
+    }
+
+    .tweet-media {
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .tweet-summary-card-text {
+      border-top: 1px solid var(--border);
+      padding: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--subtext-primary);
+    }
+
+    .tweet-summary-card-text span {
+      font-size: 0.9rem;
+    }
+
+    .tweet-summary-card-text h2 {
+      color: var(--text-primary);
+    }
+
+    .tweet-summary {
+      display: flex;
+    }
+
+    .tweet-summary img {
+      width: 130px;
+      height: 130px;
+    }
+
+    .tweet-summary>div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--border);
+      border-top: 0px !important;
+    }
+
+    .tweet-image {
+      width: 100%;
+    }
+
+    .tweet-quoted .tweet {
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    .tweet {
+      width: 500px;
+      padding: 2rem;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--bg-primary);
+    }
+
+    .tweet-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .tweet-author-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .tweet-author-verified {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-left: 0.25rem;
+      color: var(--text-secondary);
+    }
+
+    .tweet-logo {
+      color: var(--text-secondary);
+    }
+
+    .tweet-info-favourite,
+    .tweet-info-favourite+* {
+      display: none;
+    }
 
   </style>
 </head>
@@ -786,117 +1001,349 @@
       <div class="bird"></div>
     </div>
   </div> -->
-  <div
-    data-body-style="background-image:url(images/smoke-icon-26.jpg);background-size: 10%;background-position: center center;">
-    <h2 class="absolute">Bertrand de Rouen</h2>
+  <div data-body-style="background-color:#111; color: #fff;">
+    <h1>Frago</h1>
+    <p class="small">Outil de suivi de conformité</p>
   </div>
-  <div>
-    <h2 class="absolute">Changer sa vision du monde</h2>
-    <div class="svg">
-      <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 55 60">
-        <g fill="#000" fill-rule="nonzero">
-          <path
-            d="M55 23.067a29.965 29.965 0 00-1.047-8.491 16.572 16.572 0 00-5.978-8.6C42.33 1.553 37.054-.28 30.886.033a67.106 67.106 0 00-9.673 1.383c-4.511.907-7.788 2.493-10.019 4.849A18.981 18.981 0 007.182 12.8a26.426 26.426 0 00-.908 3.272l-.08.346c-.21.779-.495 1.536-.849 2.261-.206.462-.413.924-.592 1.4a3.375 3.375 0 00-.269 1.681 3.819 3.819 0 001.459 2.227c.491.45.813.765.816 1.053-.04.15-.098.292-.175.426a38.643 38.643 0 01-4.378 7.121c-.718.877-1.47 1.9-1.317 2.939.219.788.74 1.459 1.449 1.866.33.228.68.429 1.043.6.431.22 1.154.588 1.2.853.065.337.027.685-.109 1-.149.312-.3.582-.435.817-.367.649-.982 1.737-.057 2.515.216.19.586.481.924.74-.25.44-.362.943-.322 1.447.054.391.267.743.589.973.224.159.463.3.7.432.588.335.817.492.9.8.054.407.017.822-.108 1.213a9.546 9.546 0 00-.149.787c-.101.91.013 1.83.335 2.687a3.7 3.7 0 004.357 2.644 81.58 81.58 0 008.436-2.523c2.248 1.328 3.669 5.345 4.039 6.852a1 1 0 00.971.762l25.1-.069a1 1 0 00.953-1.293 7.712 7.712 0 00-1.019-1.913 9.434 9.434 0 01-.64-1.061 19.646 19.646 0 01-1.13-2.86 33.288 33.288 0 01-1.178-5.914c-.354-2.99.097-6.02 1.308-8.778a22.451 22.451 0 012.715-4.286c.6-.813 1.227-1.653 1.789-2.54a15.375 15.375 0 002.45-8.21zm-5.844 9.567a24.305 24.305 0 00-2.942 4.678 18.89 18.89 0 00-1.46 9.818A35.065 35.065 0 0046 53.394a21.8 21.8 0 001.24 3.142c.227.447.485.879.771 1.291l.072.109L25.408 58a15.963 15.963 0 00-3.525-6.388c.255-.089.5-.172.721-.252.758-.265 1.331-.466 1.617-.556 4.287-1.346 6.431-3.294 6.373-5.791a1.039 1.039 0 00-1.024-.977 1 1 0 00-.976 1.024c.024 1.03-.819 2.532-4.974 3.836-.3.094-.891.3-1.678.577-.713.25-1.588.556-2.545.883A83.191 83.191 0 0110.8 52.95a1.774 1.774 0 01-2.064-1.342 3.881 3.881 0 01-.241-1.764c.027-.207.074-.414.12-.622a4.436 4.436 0 00.094-2.137 3.3 3.3 0 00-1.844-2.046l-.214-.123c.107-.218.235-.426.383-.619a1 1 0 00-.192-1.42c-.24-.178-.812-.606-1.222-.935.051-.093.108-.2.161-.289.154-.271.329-.584.5-.941a3.7 3.7 0 00.269-2.236c-.233-1.227-1.4-1.825-2.261-2.261-.29-.138-.569-.3-.832-.483a5.211 5.211 0 01-.588-.476c0-.15.16-.516.929-1.455a40.37 40.37 0 004.569-7.428c.24-.412.375-.878.392-1.355a3.482 3.482 0 00-1.465-2.5c-.4-.37-.786-.72-.829-1.028.004-.242.058-.48.16-.7.164-.434.355-.86.546-1.286.408-.841.733-1.72.971-2.624l.081-.349c.214-1.027.493-2.038.836-3.029a16.989 16.989 0 013.587-5.862c1.937-2.04 4.869-3.44 8.961-4.263a65.02 65.02 0 019.381-1.346c5.658-.3 10.515 1.414 15.751 5.522a14.423 14.423 0 015.287 7.57A27.931 27.931 0 0153 23.038a13.427 13.427 0 01-2.139 7.179c-.524.822-1.126 1.633-1.708 2.417h.003z" />
-          <path fill="green"
-            d="M21 17h1a1 1 0 000-2h-1a3 3 0 00-3 3v1a3 3 0 003 3h1a1 1 0 000-2h-1a1 1 0 01-1-1v-1a1 1 0 011-1zM28 14a1 1 0 00-1 1v2a1 1 0 01-1 1h-1a1 1 0 000 2h1a3 3 0 003-3v-2a1 1 0 00-1-1z" />
-          <path
-            d="M32 14v-1a3 3 0 00-3-3h-2a3 3 0 00-3 3v1a1 1 0 002 0v-1a1 1 0 011-1h2a1 1 0 011 1v1a1 1 0 002 0zM35 21h-1a1 1 0 01-1-1v-1a1 1 0 00-2 0v1a3 3 0 003 3h1a1 1 0 000-2zM40 18a1 1 0 00-1-1h-1a1 1 0 010-2h1a1 1 0 000-2h-1a3 3 0 000 6h1a1 1 0 001-1zM43 18a1 1 0 00-1 1v2a1 1 0 01-1 1h-1a1 1 0 000 2h1a3 3 0 003-3v-2a1 1 0 00-1-1z" />
-          <path
-            d="M50.96 21c0-.016-.008-.029-.009-.045a24.6 24.6 0 00-.848-5.284 12.483 12.483 0 00-4.593-6.54C40.987 5.583 36.886 4 32.209 4c-.368 0-.74.01-1.121.028-.341.018-.682.057-1.023.085-.023 0-.042-.013-.065-.013a.905.905 0 00-.155.031A70.279 70.279 0 0022 5.338a23.366 23.366 0 00-3.344.921c-.023.009-.046.014-.068.024A11.565 11.565 0 0014.1 9.016a14.85 14.85 0 00-2.882 4.511.99.99 0 00-.075.177c-.067.164-.144.319-.206.486-.307.833-.79 2.907-.851 3.168-.225 1.119-.783 4.954 1.486 7.36 1.44 1.526 3.642 2.09 6.534 1.68l1.346-.192c6.416-.923 9.636-1.386 12.407 1.324a63.816 63.816 0 001.647 1.57c-.629 1.978-1.445 6.2 1.9 8.7C39 40.5 39 41.231 39 43a1 1 0 001.447.9C40.709 43.764 43 42.488 43 38c0-2.455 1.83-4.577 3.637-6.333l.03-.027a9.671 9.671 0 002.5-2.5 11.561 11.561 0 001.533-3.729.99.99 0 00.09-.411c.126-.656.196-1.321.21-1.989A28.63 28.63 0 0050.96 21zM41 38a7.645 7.645 0 01-.352 2.454c-.467-1.169-1.549-2.38-4.048-4.255-1.987-1.488-1.847-3.962-1.418-5.7a10.727 10.727 0 006.6 2.361c.39-.003.779-.026 1.166-.068A8.7 8.7 0 0041 38zm6.48-9.926a6.5 6.5 0 01-2.849 2.368A8.783 8.783 0 0139 30.358V29a1 1 0 011-1h3a1 1 0 000-2h-3a3 3 0 00-3 3v.311a27.155 27.155 0 01-3.745-3.21A8.515 8.515 0 0029 23.76V23a1 1 0 00-2 0v.516c-2.628.005-5.25.243-7.835.711l-1.342.191a9.644 9.644 0 01-1.823.094V24a1 1 0 00-2 0v.048a3.353 3.353 0 01-.977-.7A4.493 4.493 0 0111.968 21H13a3 3 0 003-3 1 1 0 00-2 0 1 1 0 01-1 1h-1.121c.027-.41.08-.816.159-1.219.131-.568.5-2.1.733-2.781H16a1 1 0 000-2h-2.318a12.434 12.434 0 011.867-2.609A8.321 8.321 0 0118 8.693V10a3 3 0 003 3 1 1 0 000-2 1 1 0 01-1-1V7.91c.789-.246 1.59-.45 2.4-.61.852-.172 1.724-.337 2.6-.494V7a1 1 0 002 0v-.527c.666-.1 1.333-.192 2-.265V7a1 1 0 002 0v-.958c.063 0 .127-.012.189-.016A21.45 21.45 0 0133 6.025V10a1 1 0 001 1h2a1 1 0 000-2h-1V6.243c1.75.297 3.442.868 5.013 1.692 0 .023-.013.042-.013.065v3a1 1 0 002 0V9.09c.656.425 1.32.889 2 1.412V13a1 1 0 01-1 1 1 1 0 000 2 3 3 0 003-3v-.685a9.821 9.821 0 012.179 3.9A21.8 21.8 0 0148.863 20H47a1 1 0 000 2h1.979c.007.327.023.652.018.982-.005.348-.043.683-.081 1.018H47a1 1 0 000 2h1.464a9.78 9.78 0 01-.984 2.074z" />
-        </g>
+  <div data-body-class="slidedark">
+    <h2>Numérique <strong>responsable</strong>&nbsp?</h2>
+  </div>
+  <div class="tweet " data-style="">
+    <div class="tweet-header">
+      <div class="tweet-author">
+        <img class="tweet-author-image"
+          src="https://pbs.twimg.com/profile_images/1456330667869057024/BrOqvYem_normal.jpg">
+        <div class="tweet-author-info">
+          <div class="tweet-author-title" <p="">Pierre de Gourcy<p></p>
+            <svg class="tweet-author-verified" viewBox="0 0 24 24">
+              <g>
+                <path fill="currentColor"
+                  d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z">
+                </path>
+              </g>
+            </svg>
+          </div>
+          <a class="tweet-author-handler" target="_blank" href="https://twitter.com/PierreDeGourcy">@PierreDeGourcy
+          </a>
+        </div>
+      </div>
+      <svg class="tweet-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        aria-hidden="true" role="img" width="32" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z">
+        </path>
       </svg>
     </div>
+
+    <div class="tweet-content">
+      Répartition des températures moyennes annuelles entre 1850 et 2021 dans le monde<br><a class="tweet-content-link"
+        href="https://twitter.com/hashtag/BlocageTotal" target="_blank">#BlocageTotal</a>
+      <div class="tweet-media"><img style="width: 100%" class="tweet-image"
+          src="https://pbs.twimg.com/media/FTn8zesWAAACySH.jpg"></div>
+
+    </div>
+
+    <div class="tweet-info">
+      <svg class="tweet-info-favourite" width="24" height="24" viewBox="0 0 24 24">
+        <path class="fill-current"
+          d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.813-1.148 2.353-2.73 4.644-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.375-7.454 13.11-10.037 13.156H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.035 11.596 8.55 11.658 1.52-.062 8.55-5.917 8.55-11.658 0-2.267-1.822-4.255-3.902-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.015-.03-1.426-2.965-3.955-2.965z">
+        </path>
+      </svg>
+      <span>15</span>
+      <div class="tweet-info-date">6:35 PM · May 25, 2022</div>
+    </div>
+
   </div>
-  <!-- Corps -->
+
   <div>
-    <h2>Le<br><strong>facteur</strong> 4</h2>
-    <p class="small">La division par 4 des émissions de gaz à effet de serre à l'horizon 2050 en France (sur le niveau
-      de 1990)</p>
-  </div>
-  <!-- Argument 1 :: côté Site  -->
-  <div data-body-style="background-image:url(images/samknows-waterfall.svg);background-size: 90% auto;">
-    <h2 class="absolute">Empreinte du chargement d'une page web</h2>
-    <notes>Une page web pour moi - des assets</notes>
-  </div>
-  <div
-    data-body-style="background-image:url(images/node-black-hole.png);background-size: auto 90%;background-position: center 100%;">
-    <h2 class="absolute">Empreinte de NodeJs</h2>
-    <notes>On s’équipe de la terre entière pour développer ça se comlexifie</notes>
-  </div>
-  <div data-body-style="background-image:url(images/gitlab-pipeline-4.png);background-size: 90% auto;">
-    <h2 class="absolute">Empreinte de l’intégration continue</h2>
-    <notes>Ensuite on orchestre</notes>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte base de code</h2>
-      <div><b>Code<span>100MB</span></b></div>
-    </span>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte base de code</h2>
-      <div><b>Code<span>100MB</span></b></div>
-      <div style="animation: appear 2s ease-out;"><b>Outillage<span>1GB</span></b></div>
-    </span>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte base de code</h2>
-      <div><b>Code<span>100MB</span></b></div>
-      <div><b>Outillage<span>1GB</span></b></div>
-      <div style="animation: appear 2s ease-out;"><b>Génération<span>?GB</span></b></div>
-    </span>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte base de code</h2>
-      <div><b style="animation: decreaseincrease20 10s ease infinite;height: 18%;">Code<span>100MB</span></b></div>
-      <div><b style="animation: decreaseincrease40 10s ease infinite;height: 38%;">Outillage<span>1GB</span></b></div>
-      <div style="animation: big 10s ease infinite;"><b>Génération<span>?GB</span></b></div>
-    </span>
-  </div>
-  <div>
-    <div class="bounceball"></div>
-    <div class="bouncetext loading">Que faire</div>
-  </div>
-  <div>
-    <div class="wrapper">
-      <p>Hébergement</p>
+    <div class="tweet " data-style="">
+      <div class="tweet-header">
+        <div class="tweet-author">
+          <img class="tweet-author-image"
+            src="https://pbs.twimg.com/profile_images/1511078050150166528/Dj1zm37i_normal.jpg">
+          <div class="tweet-author-info">
+            <div class="tweet-author-title" <p="">Greg De Temmerman<p></p>
+              <svg class="tweet-author-verified" viewBox="0 0 24 24">
+                <g>
+                  <path fill="currentColor"
+                    d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z">
+                  </path>
+                </g>
+              </svg>
+            </div>
+            <a class="tweet-author-handler" target="_blank" href="https://twitter.com/Gregdt1">@Gregdt1
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="tweet-content">
+        Trajectoires de fermeture des centrales à charbon.<br>En gris, si on suit les constructions prévues et les
+        durées de vie.<br>En rose ce qu'il faut faire pour rester sous les 2 degrés.<br>En bleu, sous les 1.5
+        degrés...<br>C'est un gap!
+        <div class="tweet-media"><img style="width: 100%" class="tweet-image"
+            src="https://pbs.twimg.com/media/FS-9QDPXEAAi-1W.png"></div>
+      </div>
+      <div class="tweet-info">
+        <svg class="tweet-info-favourite" width="24" height="24" viewBox="0 0 24 24">
+          <path class="fill-current"
+            d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.813-1.148 2.353-2.73 4.644-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.375-7.454 13.11-10.037 13.156H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.035 11.596 8.55 11.658 1.52-.062 8.55-5.917 8.55-11.658 0-2.267-1.822-4.255-3.902-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.015-.03-1.426-2.965-3.955-2.965z">
+          </path>
+        </svg>
+        <span>240</span>
+        <div class="tweet-info-date">7:33 PM · May 17, 2022</div>
+      </div>
     </div>
   </div>
-  <!-- Argument 2 :: côté Client  -->
-  <!-- <div
-    data-body-style="background-image:url(images/vietnam-change.gif);background-size: 40% auto;background-color:#fde503;">
-    <notes>Bonne intention</notes>
-  </div>
-  <div data-body-style="background-image:url(images/vietnam-consumption.svg);background-size: 90% auto">
-    <notes>La réalité</notes>
-  </div> -->
   <div>
+    <div class="tweet " data-style="">
+      <div class="tweet-header">
+        <div class="tweet-author">
+          <img class="tweet-author-image"
+            src="https://pbs.twimg.com/profile_images/1113148055023439873/dZJNy38E_normal.png">
+          <div class="tweet-author-info">
+            <div class="tweet-author-title" <p="">Le Grand Continent<p></p>
+              <svg class="tweet-author-verified" viewBox="0 0 24 24">
+                <g>
+                  <path fill="currentColor"
+                    d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z">
+                  </path>
+                </g>
+              </svg>
+            </div>
+            <a class="tweet-author-handler" target="_blank" href="https://twitter.com/Grand_Continent">@Grand_Continent
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="tweet-content">
+        Augmentation de la température mondiale que vous allez probablement connaître au cours de votre vie, en fonction
+        de votre âge actuel.<br><br>Au boulot ?
+        <div class="tweet-media"><img style="width: 100%" class="tweet-image"
+            src="https://pbs.twimg.com/media/FRLbfKTX0AAGMnA.jpg"></div>
+      </div>
+      <div class="tweet-info">
+        <svg class="tweet-info-favourite" width="24" height="24" viewBox="0 0 24 24">
+          <path class="fill-current"
+            d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.813-1.148 2.353-2.73 4.644-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.375-7.454 13.11-10.037 13.156H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.035 11.596 8.55 11.658 1.52-.062 8.55-5.917 8.55-11.658 0-2.267-1.822-4.255-3.902-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.015-.03-1.426-2.965-3.955-2.965z">
+          </path>
+        </svg>
+        <span>182</span>
+        <div class="tweet-info-date">9:15 AM · Apr 25, 2022</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="tweet " data-style="">
+    <div class="tweet-header">
+      <div class="tweet-author">
+        <img class="tweet-author-image"
+          src="https://pbs.twimg.com/profile_images/1336958112167833600/UhIXB8K1_normal.jpg">
+        <div class="tweet-author-info">
+          <div class="tweet-author-title" <p="">Design des services numériques<p></p>
+            <svg class="tweet-author-verified" viewBox="0 0 24 24">
+              <g>
+                <path fill="currentColor"
+                  d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z">
+                </path>
+              </g>
+            </svg>
+          </div>
+          <a class="tweet-author-handler" target="_blank" href="https://twitter.com/design_gouv">@design_gouv
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tweet-content">
+      En 2021, 32%* des adultes en France ont renoncé à effectuer une démarche administrative <img class="emoji"
+        draggable="false" alt="🧑‍💻" src="https://twemoji.maxcdn.com/v/14.0.2/svg/1f9d1-200d-1f4bb.svg"><br><br>*selon
+      le rapport de l’INSEE publié en mai 2022.<br><br>Pourquoi ? <img class="emoji" draggable="false" alt="⬇️"
+        src="https://twemoji.maxcdn.com/v/14.0.2/svg/2b07.svg"><br><br><a class="tweet-content-link"
+        href="https://twitter.com/hashtag/servicemaximum" target="_blank">#servicemaximum</a> <a
+        class="tweet-content-link" href="https://twitter.com/hashtag/numérique" target="_blank">#numérique</a>
+      <div class="tweet-media"><img style="width: 100%" class="tweet-image"
+          src="https://pbs.twimg.com/media/FV3QwRzXwAEQeKa.jpg"></div>
+    </div>
+    <div class="tweet-info">
+      <svg class="tweet-info-favourite" width="24" height="24" viewBox="0 0 24 24">
+        <path class="fill-current"
+          d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.813-1.148 2.353-2.73 4.644-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.375-7.454 13.11-10.037 13.156H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.035 11.596 8.55 11.658 1.52-.062 8.55-5.917 8.55-11.658 0-2.267-1.822-4.255-3.902-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.015-.03-1.426-2.965-3.955-2.965z">
+        </path>
+      </svg>
+      <span>11</span>
+      <div class="tweet-info-date">2:30 PM · Jun 22, 2022</div>
+    </div>
+  </div>
+  <div data-body-class="slidedark">
+    <h2>Ressources <strong>précieuses</strong></h2>
+  </div>
+  <div
+    data-body-style="background-image:url(images/greenit.fr_etude-empreinte-environnementale-du-numerique-mondial.png);background-size: 60% auto;background-position: center;">
+    <h2 class="absolute">Impact du numérique sur les ressources</h2>
+  </div>
+  <div>
+    <dl class="small">
+      <dt><strong>1. Potentiel d’épuisement des ressources abiotiques</strong></dt>
+      <dd>Ressources non vivantes telles que le sol, l’eau, l’air et les minéraux.</dd>
+      <dt><strong>2. Potentiel de gaz à effet de serre</strong></dt>
+      <dd>Évalue l’effet sur le réchauffement de la planète.</dd>
+      <dt><strong>3. Consommation de ressources énergétiques</strong></dt>
+      <dd>Consommation d’énergie renouvelables + non renouvelables.</dd>
+    </dl>
+  </div>
+  <div
+    data-body-style="background-image:url(images/nappe-phreatique.jpg);background-size: auto 80%;background-position: center 90%;">
+    <h2 class="absolute">Nappe phréatique</h2>
+  </div>
+  <div
+    data-body-style="background-image:url(images/nappe-phreatique-captage.jpg);background-size: auto 80%;background-position: center 90%;">
+    <h2 class="absolute">Nappe phréatique - captage</h2>
+  </div>
+  <div
+    data-body-style="background-image:url(images/nappe-phreatique-assechement.png);background-size: 50% auto;background-position: center 60%;">
+    <h2 class="absolute">Nappe phréatique - Assèchement</h2>
+  </div>
+  <div
+    data-body-style="background-image:url(images/priorite-data-center-captage-eau-theorique.png);background-size: auto 70%;background-position: center 70%;">
+    <h2 class="absolute">Nappe phréatique - priorité captage</h2>
+  </div>
+  <div class="tweet " data-style="">
+    <div class="tweet-header">
+      <div class="tweet-author">
+        <img class="tweet-author-image"
+          src="https://pbs.twimg.com/profile_images/1095024905626812416/GrXliUNl_normal.jpg">
+        <div class="tweet-author-info">
+          <div class="tweet-author-title" <p="">Arnaud de Bermingham<p></p>
+            <svg class="tweet-author-verified" viewBox="0 0 24 24">
+              <g>
+                <path fill="currentColor"
+                  d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z">
+                </path>
+              </g>
+            </svg>
+          </div>
+          <a class="tweet-author-handler" target="_blank" href="https://twitter.com/a_bermingham">@a_bermingham
+          </a>
+        </div>
+      </div>
+      <svg class="tweet-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        aria-hidden="true" role="img" width="32" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z">
+        </path>
+      </svg>
+    </div>
+    <div class="tweet-content">
+      <img class="emoji" draggable="false" alt="🌡" src="https://twemoji.maxcdn.com/v/14.0.2/svg/1f321.svg"><img
+        class="emoji" draggable="false" alt="📈" src="https://twemoji.maxcdn.com/v/14.0.2/svg/1f4c8.svg">Les derniers
+      modèles météo montrent des températures de près de 42C en région parisienne ce Samedi. Ça va être épisode
+      éprouvant et à haut risque pour les datacenters qui vont se retrouver au delà de leurs limites de conception et de
+      fonctionnement.
+    </div>
+    <div class="tweet-info">
+      <svg class="tweet-info-favourite" width="24" height="24" viewBox="0 0 24 24">
+        <path class="fill-current"
+          d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.813-1.148 2.353-2.73 4.644-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.375-7.454 13.11-10.037 13.156H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.035 11.596 8.55 11.658 1.52-.062 8.55-5.917 8.55-11.658 0-2.267-1.822-4.255-3.902-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.015-.03-1.426-2.965-3.955-2.965z">
+        </path>
+      </svg>
+      <span>250</span>
+      <div class="tweet-info-date">7:33 AM · Jun 15, 2022</div>
+    </div>
+  </div>
+  <div data-body-class="slidedark"
+    data-body-style="background-image:url(images/temperature-27-juin-europe.png);background-size: 100%;background-position: center;">
+    <h2 class="absolute highlight">Température en Europe 27 juin 2022</h2>
+  </div>
+  <div
+    data-body-style="background-image:url(images/priorite-data-center-captage-eau-pratique.png);background-size: auto 70%;background-position: center 70%;">
+    <h2 class="absolute">Nappe phréatique - priorité captage</h2>
+  </div>
+  <div data-body-style="background-color:#333; color: #fff;">
+    <h2><strong>Matières</strong> premières</h2>
+  </div>
+  <div
+    data-body-style="background-image:url(images/composant-materiaux-telephone-mobile-pays-provenance.png);background-size: auto 70%;background-position: center 55%;">
+    <h2 class="absolute">Origine géographique de nos composants</h2>
+  </div>
+  <div
+    data-body-style="background-image:url(images/me_taux_smartphones.png);background-size: auto 70%;background-position: center 70%;">
+    <h2 class="absolute">Métaux contenus dans nos smartphones</h2>
+  </div>
+  <div
+    data-body-style="background-image:url(images/cradle-to-cradle.png);background-size: auto 70%;background-position: center 70%;">
+    <h2 class="absolute">Berceau au Berceau</h2>
+  </div>
+  <div data-body-class="slidedark"
+    data-body-style="background-image:url(images/decharge-afrique.jpg);background-size: 100%;background-position: center;">
+    <h2 class="highlight">Afrique poubelle du monde</h2>
+  </div>
+  <div class="tweet " data-style="">
+    <div class="tweet-header">
+      <div class="tweet-author">
+        <img class="tweet-author-image"
+          src="https://pbs.twimg.com/profile_images/1441315276302159876/bAepaZIl_normal.jpg">
+        <div class="tweet-author-info">
+          <div class="tweet-author-title" <p="">Fatih Birol<p></p>
+          </div>
+          <a class="tweet-author-handler" target="_blank" href="https://twitter.com/fbirol">@fbirol
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="tweet-content">
+      According to the <a class="tweet-content-link" href="https://twitter.com/IEA" target="_blank">@IEA</a>&nbsp;report
+      : <br><br>The energy sector’s needs for minerals could rise by as much as 6 times by 2040. Insufficient supplies
+      would risk delays &amp; extra costs.<br><br>More <img class="emoji" draggable="false" alt="➡️"
+        src="https://twemoji.maxcdn.com/v/14.0.2/svg/27a1.svg"> <a class="tweet-content-link"
+        href="https://t.co/z7jNUt52dJ" target="_blank">iea.li/3ef1vrw</a>
+      <div class="tweet-media"><img style="width: 100%" class="tweet-image"
+          src="https://pbs.twimg.com/media/E0mUakZXoAEgO4Z.png"></div>
+    </div>
+    <div class="tweet-info">
+      <svg class="tweet-info-favourite" width="24" height="24" viewBox="0 0 24 24">
+        <path class="fill-current"
+          d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.813-1.148 2.353-2.73 4.644-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.375-7.454 13.11-10.037 13.156H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.035 11.596 8.55 11.658 1.52-.062 8.55-5.917 8.55-11.658 0-2.267-1.822-4.255-3.902-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.015-.03-1.426-2.965-3.955-2.965z">
+        </path>
+      </svg>
+      <span>417</span>
+      <div class="tweet-info-date">5:00 AM · May 5, 2021</div>
+    </div>
+
+  </div>
+  <div data-body-class="slidedark" class="wrapper">
+    <p>Numérique</p>
+  </div>
+  <!--<div>
     <span class="grid-flex">
-      <h2>Empreinte Fabrication/Utilisation</h2>
-      <div><b>Data Center</b></div>
-      <notes>Consomation reporté sur les utilisateurs</notes>
+      <h2 class="absolute">Empreinte base de code</h2>
+      <div><b>Code<span>100MB</span></b></div>
     </span>
   </div>
   <div>
     <span class="grid-flex">
-      <h2>Empreinte Fabrication/Utilisation</h2>
-      <div><b>Data Center</b></div>
-      <div style="animation: appear 1.5s ease-out;"><b>Réseau</b></div>
+      <h2 class="absolute">Empreinte base de code</h2>
+      <div><b>Code<span>100MB</span></b></div>
+      <div style="animation: appear 2s ease-out;"><b>Outillage<br>(Librairies Node)<span>1GB</span></b></div>
     </span>
   </div>
   <div>
     <span class="grid-flex">
-      <h2>Empreinte Fabrication/Utilisation</h2>
-      <div><b>Data Center<span>17%</span></b></div>
-      <div><b>Réseau<span>23%</span></b></div>
-      <div style="animation: appear 1.5s ease-out;"><b>Usagers<span>60%</span></b></div>
+      <h2 class="absolute">Empreinte base de code</h2>
+      <div><b>Code<span>100MB</span></b></div>
+      <div><b>Outillage<br>(Librairies Node)<span>1GB</span></b></div>
+      <div style="animation: appear 2s ease-out;"><b>Génération<br>(Machines virtuelles)<span>?GB</span></b></div>
     </span>
-    <notes>Achat de nouveaux matériels</notes>
   </div>
   <div>
+    <span class="grid-flex">
+      <h2 class="absolute">Empreinte base de code</h2>
+      <div><b style="animation: decreaseincrease20 10s ease infinite;height: 18%;">Code<span>100MB</span></b></div>
+      <div><b style="animation: decreaseincrease40 10s ease infinite;height: 38%;">Outillage<br>(Librairies Node)<span>1GB</span></b></div>
+      <div style="animation: big 10s ease infinite;"><b>Génération<br>(Machines virtuelles)<span>?GB</span></b></div>
+    </span>
+  </div>
+  <div>-->
+  <!--<div>
     <h2 class="absolute">Les usages ont la plus grosse empreinte</h2>
     <div class="flex">
       <div class="svg-small"><svg width="48" viewBox="0 0 512 512"
@@ -927,6 +1374,7 @@
               stroke-linecap: round;
               stroke-linejoin: round
             }
+
           </style>
           <switch>
             <g>
@@ -939,140 +1387,230 @@
           </switch>
         </svg></div>
     </div>
-  </div>
-  <!--   <div>
-    <span class="grid-flex">
-      <h2>Optimisation du parc existant</h2>
-      <div><b style="font-size: 10em;height: 35%;animation: increase40 3s ease-out;">Data Center</b></div>
-      <div><b style="font-size: 18em;height: 60%;animation: increase60 3s ease-out;">Réseau</b></div>
-      <div style="flex:2.8;font-size: 0.8em;animation: small 3s ease-out;"><b>Usagers</b></div>
-    </span>
-    <notes>Achat de nouveaux matériels</notes>
-  </div> -->
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte numérique du web</h2>
-      <div><b>Front</b></div>
-    </span>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte numérique du web</h2>
-      <div><b>Front</b></div>
-      <div style="animation: appear 1.5s ease-out;"><b>Back</b></div>
-    </span>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte numérique du web</h2>
-      <div><b>Front</b></div>
-      <div><b>Back</b></div>
-      <div style="animation: appear 1.5s ease-out;"><b>Outillage</b></div>
-    </span>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte numérique du web</h2>
-      <div><b>Front</b></div>
-      <div><b>Back</b></div>
-      <div><b>Outillage</b></div>
-      <div style="animation: appear 1.5s ease-out;"><b>Génération</b></div>
-    </span>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte numérique du web</h2>
-      <div><b>Front</b></div>
-      <div><b>Back</b></div>
-      <div><b>Outillage</b></div>
-      <div><b>Génération</b></div>
-      <div style="animation: appear 1.5s ease-out;"><b>Réseau</b></div>
-    </span>
-  </div>
-  <div>
-    <span class="grid-flex">
-      <h2>Empreinte numérique du web</h2>
-      <div><b>Front</b></div>
-      <div><b>Back</b></div>
-      <div><b>Outillage</b></div>
-      <div><b>Génération</b></div>
-      <div><b>Réseau</b></div>
-      <div style="animation: appear 1.5s ease-out;"><b>Les usages</b></div>
-    </span>
-  </div>
-  <div>
-    <p><strong>70%</strong> des interfaces sont utilisées à moins de <strong>10%</strong></p>
-  </div>
-  <div data-body-style="background-image:url(images/atlas-greek-mythology.png);background-size: auto 60%;">
-    <h2 style="font-size: 1.5rem; position: absolute; bottom: 10vh;transform: translatex(-50%);">Développeur portant le monde</h2>
-  </div>
+  </div>-->
   <div>
     <h2 class="absolute">4 facteurs de changement pour le facteur 4</h2>
     <div class="pyramid-container">
-      <div class="pyramid-level-4"><div>4<b> ⬇ <span>Limiter</span> la consommation <small>Énergie verte, recycler, acheter moins, optimiser…</small></b></div></div>
+      <div class="pyramid-level-4">
+        <div>4<b> ⬇ <span>Limiter</span> la consommation <small>Énergie verte, recycler, acheter moins,
+              optimiser…</small></b></div>
+      </div>
     </div>
   </div>
   <div>
     <h2 class="absolute">4 facteurs de changement pour le facteur 4</h2>
     <div class="pyramid-container">
-      <div class="pyramid-level-4"><div>4<b> ⬇ <span>Limiter</span> la consommation <small>Énergie verte, recycler, acheter moins, optimiser…</small></b></div></div>
-      <div class="pyramid-level-3"><div>3<b> ⬇ <span>Supprimer</span> l’inutile <small>Nettoyer son code, diminuer la dette technique…</small></b></div></div>
+      <div class="pyramid-level-4">
+        <div>4<b> ⬇ <span>Limiter</span> la consommation <small>Énergie verte, recycler, acheter moins,
+              optimiser…</small></b></div>
+      </div>
+      <div class="pyramid-level-3">
+        <div>3<b> ⬇ <span>Supprimer</span> l’inutile <small>Nettoyer son code, diminuer la dette technique…</small></b>
+        </div>
+      </div>
     </div>
   </div>
   <div>
     <h2 class="absolute">4 facteurs de changement pour le facteur 4</h2>
     <div class="pyramid-container">
-      <div class="pyramid-level-4"><div>4<b> ⬇ <span>Limiter</span> la consommation <small>Énergie verte, recycler, acheter moins, optimiser…</small></b></div></div>
-      <div class="pyramid-level-3"><div>3<b> ⬇ <span>Supprimer</span> l’inutile <small>Nettoyer son code, diminuer la dette technique…</small></b></div></div>
-      <div class="pyramid-level-2"><div>2<b> ⬆ <span>Construire</span> sobrement <small>Utiliser des outils, techno adaptés. Pas de React pour des landing pages…</small></b></div></div>
+      <div class="pyramid-level-4">
+        <div>4<b> ⬇ <span>Limiter</span> la consommation <small>Énergie verte, recycler, acheter moins,
+              optimiser…</small></b></div>
+      </div>
+      <div class="pyramid-level-3">
+        <div>3<b> ⬇ <span>Supprimer</span> l’inutile <small>Nettoyer son code, diminuer la dette technique…</small></b>
+        </div>
+      </div>
+      <div class="pyramid-level-2">
+        <div>2<b> ⬆ <span>Construire</span> sobrement <small>Utiliser des outils, techno adaptés. Pas de React pour des
+              landing pages…</small></b></div>
+      </div>
     </div>
   </div>
   <div>
     <h2 class="absolute">4 facteurs de changement pour le facteur 4</h2>
     <div class="pyramid-container">
-      <div class="pyramid-level-4"><div>4<b> ⬇ <span>Limiter</span> la consommation <small>Énergie verte, recycler, acheter moins, optimiser…</small></b></div></div>
-      <div class="pyramid-level-3"><div>3<b> ⬇ <span>Supprimer</span> l’inutile <small>Nettoyer son code, diminuer la dette technique…</small></b></div></div>
-      <div class="pyramid-level-2"><div>2<b> ⬆ <span>Construire</span> sobrement <small>Utiliser des outils, techno adaptés. Pas de React pour des landing pages…</small></b></div></div>
-      <div class="pyramid-level-1"><div>1<b> ⬆ <span>Concevoir</span> de façon responsable <small>Construire des outils utiles pour la société…</small></b></div></div>
+      <div class="pyramid-level-4">
+        <div>4<b> ⬇ <span>Limiter</span> la consommation <small>Énergie verte, recycler, acheter moins,
+              optimiser…</small></b></div>
+      </div>
+      <div class="pyramid-level-3">
+        <div>3<b> ⬇ <span>Supprimer</span> l’inutile <small>Nettoyer son code, diminuer la dette technique…</small></b>
+        </div>
+      </div>
+      <div class="pyramid-level-2">
+        <div>2<b> ⬆ <span>Construire</span> sobrement <small>Utiliser des outils, techno adaptés. Pas de React pour des
+              landing pages…</small></b></div>
+      </div>
+      <div class="pyramid-level-1">
+        <div>1<b> ⬆ <span>Concevoir</span> de façon responsable <small>Construire des outils utiles pour la
+              société…</small></b></div>
+      </div>
     </div>
   </div>
-  <div
-    data-body-style="background-image:url(images/lowtus.svg);background-size: 30%;background-position: center center;">
+  <div data-absolute="absolute"
+    data-body-style="background-image:url(images/blog-sectnum-01.svg);background-size: auto 60%;background-position: center 50%;">
+    <h2 class="absolute">Facteur d’intensification</h2>
+    <p><a href="https://gauthierroussilhe.com/post/secteur-numerique.html">Est-ce que le secteur numérique existe ?</a>
+    </p>
   </div>
   <div
-    data-body-style="background-image:url(images/gitlab-ci-scenso.png);background-size: 96% auto;background-position: center center;">
+    data-body-style="background-image:url(images/netsecure-day-viabilite.png);background-size: auto 70%;background-position: center 70%;">
+    <h2 class="absolute">Complexité</h2>
   </div>
-  <div data-body-style="background-color: #1c1c1c">
-    <img src="images/perftest.svg">
-  </div>
-  <div
-    data-body-style="background-image:url(images/arborescence.png);background-size: auto 50%;background-color: #2a2a2b;">
-  </div>
-  <div data-body-style="background-image:url(images/score-devopsrex.png);background-size: 100% auto;background-position: center 0;background-color:#faf5f4;">
-  </div>
-  <div data-body-style="background-image:url(images/score-devopsrex.png);background-size: 100% auto;background-position: center 50%;animation: translate2 5s ease;background-color:#faf5f4;"">
-  </div>
-  <div data-body-style="background-image:url(images/score-devopsrex.png);background-size: 100% auto;background-position: center 100%;animation: translate3 5s ease;background-color:#faf5f4;"">
-  </div>
-  <div
-    data-body-style="background-image:url(images/classement.png);background-size: 100% auto;background-position: center 0;animation: translate 10s ease;background-color:#faf5f4;">
-  </div>
-  <div
-    data-body-style="background-image:url(images/classement.png);background-size: 100% auto;background-position: center 50%;animation: translate2 5s ease;background-color:#faf5f4;">
-  </div>
-  <div
-    data-body-style="background-image:url(images/classement.png);background-size: 100% auto;background-position: center 100%;animation: translate3 5s ease;background-color:#faf5f4;">
-  </div>
-  <!-- <div
-    data-body-style="background-image:url(images/planet-earth.svg);background-size: 30%;background-position: center center;">
-  </div> -->
   <div>
     <blockquote>
-      <p>L’<span>espérance</span> n’est pas la conviction qu’une chose aura une issue favorable, mais la <span>certitude</span> que cette chose a un <span>sens</span>, quoi qu’il advienne.<strong>- Vaclav Havel - </strong></p>
+      <p>Je pensais avoir une compréhension de ces concepts : Static Site Generation, Server Side Rendering, Client Side
+        Rendering et je me faisais une idée de comment fonctionne certaines techniques d’hydratation.</p>
+      <p>Depuis un peu plus d’un an, je suis complètement largué (ou confus) avec tous les concepts mis en avant par
+        Next.js, SvelteKit, Astro et autre Eleventy cloud machin.</p>
+      <p><strong>Hubert S. Expert du web.</strong></p>
     </blockquote>
   </div>
+  <div
+    data-body-style="background-image:url(images/baisser-complexite-numerique.jpg);background-size: 90% auto;background-position: center 60%;">
+    <h2 class="absolute">Les tendances du Web Front</h2>
+  </div>
+  <div data-body-class="slidedark">
+    <h2>goHugo</h2>
+    <p class="small">outil <strong>Low-Tech</strong> pour moins de complexité</p>
+  </div>
+  <div
+    data-body-style="background-image:url(images/ssg.png);background-size: auto 70%;background-position: center 60%;">
+    <h2 class="absolute">Générateur de site statique</h2>
+  </div>
   <div>
-    <h2>Trouver du sens</h2>
+    <dl class="small">
+      <dt>1. Multiplateforme</dt>
+      <dd>goHugo est un simple exécutable. Installable sur toutes les plateformes (même un windows avec
+        droits administrateurs).</dd>
+      <dt>2. Rapidité de génération</dt>
+      <dd>La génération du contenu est (très) rapide, particulièrement, quand le contenu est volumineux. Pour
+        <code>Frago</code>, on manipule du <code>csv</code>, c’est lourd mais ça passe.</dd>
+      <dt>3. Fonctionnalités très développées</dt>
+      <dd>goHugo est bien maintenu, il possède une bibliothèque de fonctionnalités complète et de très
+        intéressantes sont ajoutées.
+      </dd>
+    </dl>
+  </div>
+  <div
+    data-body-style="background-image:url(images/ssg-frago.png);background-size: auto 70%;background-position: center 60%;">
+    <h2 class="absolute">Thème goHugo</h2>
+  </div>
+  <div>
+    <h2>Inventaires&nbsp!</h2>
+    <p class="small">Démarche Open Data, remettre les agents au centre.</p>
+  </div>
+  <div data-body-class="slidedark" tabindex="0" class="slide">
+    <h2>Utilité d’un référentiel&nbsp;?</h2>
+    <p class="small">Ex. RGAA</p>
+  </div>
+
+  <div data-body-style="" tabindex="0" class="slide">
+    <div>
+      <h2>Contrainte Légale&nbsp;?</h2>
+    </div>
+  </div>
+
+  <div data-body-class="" data-body-style="" tabindex="0" class="slide">
+    <div>
+      <h2>1.&nbsp;conforme</h2>
+      <p class="small">100% conforme, au niveau AA dès aujourd’hui (risque juridique).</p>
+    </div>
+  </div>
+
+  <div data-body-class="" data-body-style="" tabindex="0" class="slide">
+    <div>
+      <h2>2.&nbsp;Transparence</h2>
+      <p class="small">Obligations de transparence, avec un délai de 3 à 5 mois pour la mise en conformité (sanction
+        administrative).</p>
+    </div>
+  </div>
+
+  <div data-body-class="" data-body-style="" tabindex="0" class="slide">
+    <div>
+      <h2>3.&nbsp;Planification</h2>
+      <p class="small">Planification de mise en conformité, avec existence permanente&nbsp; d’un schéma pluriannuel
+        valide au maximum 3 ans.</p>
+    </div>
+  </div>
+
+  <div data-body-class="" data-body-style="" tabindex="0" class="slide">
+    <h2>Organismes&nbsp;concernés</h2>
+    <ol class="small">
+      <li>Les personnes morales de droit public ;</li>
+      <li>Les personnes morales de droit privé délégataires d’une mission de service public ;</li>
+      <li>Les personnes morales de droit privé constituées par une ou plusieurs des personnes mentionnées aux 1° et
+        2° ;</li>
+      <li>Les entreprises à compter d’un seuil de chiffre d’affaires de 250 millions d’euros.</li>
+    </ol>
+  </div>
+
+  <div data-body-class="" data-body-style="" tabindex="0" class="slide">
+    <div>
+      <h2>Engagements</h2>
+      <ol class="small">
+        <li>Une adaptation de l’organisation interne de production et de gestion des sites web et
+          applications concernés ;</li>
+        <li>L’accompagnement des agents par des actions de sensibilisation et de formation ;</li>
+        <li>Une modification des procédures de marché ;</li>
+        <li>La prise en charge des personnes en situation de handicap lorsqu’elles signalent des difficultés.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div data-body-class="slidedark" tabindex="0" class="slide">
+    <h2>Comment gérer cette M****&nbsp;?</h2>
+  </div>
+
+  <div data-body-class="" data-absolute="absolute"
+    data-body-style="background-image:url(images/ico-archive.svg);background-size:15%;background-position: center center;">
+    <h2>Archivage</h2>
+    <p class="small">Conserver les données dans le temps.</p>
+  </div>
+
+  <div data-body-class="" data-absolute="absolute"
+    data-body-style="background-image:url(images/ico-box.svg);background-size:15%;background-position: center center;">
+    <h2>Collecte</h2>
+    <p class="small">Communiquer les taux de chaque démarche d’un organisme.</p>
+  </div>
+
+  <div data-body-class="" data-absolute="absolute"
+    data-body-style="background-image:url(images/ico-publish.svg);background-size:15%;background-position: center center;">
+
+    <h2>Publication</h2>
+    <p class="small">Mise à jour des documents légaux.</p>
+
+  </div>
+
+  <div data-body-class="" data-absolute="absolute"
+    data-body-style="background-image:url(images/ico-diploma.svg);background-size:15%;background-position: center center;">
+    <div>
+      <h2>Expertise technique</h2>
+      <p class="small">Référent(s) accessibilité(s).</p>
+    </div>
+  </div>
+
+  <div data-body-class="" data-absolute="absolute"
+    data-body-style="background-image:url(images/ico-knowledge.svg);background-size:15%;background-position: center center;">
+    <div>
+      <h2>Acculturation équipe</h2>
+      <p class="small">Discours adapté à chaque métier.</p>
+    </div>
+  </div>
+
+  <div data-body-class=""
+    data-body-style="background-image:url(https://bertrandkeller.github.io/conference-devfest-accessibilite-coeur-developpement/images/animation-depart.svg);background-position: center center;background-size: auto 70%">
+    <h2 class="absolute">Périmètre</h2>
+  </div>
+  <div data-body-class="slidedark">
+    <h2>Démonstration</h2>
+  </div>
+  <div data-body-class="slidedark">
+    <div>
+      <h2>Merci</h2>
+      <p class="small">Unir nos efforts</p>
+    </div>
   </div>
   <!-- <div>
     <blockquote>
